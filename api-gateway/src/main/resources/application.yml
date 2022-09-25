@@ -1,0 +1,33 @@
+#spring:
+#  application:
+#    name: gateway-service
+#  config:
+#    import: "optional:configserver:http://localhost:8008"
+
+
+server:
+  port: 8084
+spring:
+  application:
+    name: gateway-service
+  config:
+    import: "optional:configserver:http://localhost:8008"
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/user/**
+
+        - id: task-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/task/**
+
+#eureka:
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: user-service
+  config:
+    import: "optional:configserver:http://localhost:8008"
+
+
+  main:
+    allow-bean-definition-overriding: true
+
+
+  #r2dbc (database webflux)
+  r2dbc:
+    url: r2dbc:pool:postgresql://localhost:2346/user_db
+    password: user
+    username: user
+server:
+  port: 8082

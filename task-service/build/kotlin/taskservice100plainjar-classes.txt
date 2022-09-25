@@ -1,0 +1,1 @@
+/home/rith/MiniSpring-Microservice/task-service/build/classes/kotlin/main/com/ksga/TaskServiceApplication.class:/home/rith/MiniSpring-Microservice/task-service/build/classes/kotlin/main/com/ksga/TaskServiceApplicationKt.class:/home/rith/MiniSpring-Microservice/task-service/build/classes/kotlin/main/com/ksga/model/model.class
