@@ -2,7 +2,7 @@ spring:
   application:
     name: task-service
   config:
-    import: optional:configserver:http://localhost:8008
+    import: "optional:configserver:http://localhost:8008"
 
 
   main:
