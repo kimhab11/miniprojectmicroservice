@@ -40,18 +40,6 @@ CREATE TABLE IF NOT EXISTS group_members
     foreign key (added_by) references app_users (id) on delete cascade,
     primary key (group_id, user_id)
 
-
---         group_id   uuid,
---         user_id    uuid,
---         added_by   uuid,
---         date_added timestamp not null default now(),
---
---         foreign key (group_id) references groups (id) on delete cascade,
---         foreign key (user_id) references app_users (id) on delete cascade,
---         foreign key (added_by) references app_users (id) on delete cascade,
---         primary key (group_id, user_id)
-
-
     );
 
 

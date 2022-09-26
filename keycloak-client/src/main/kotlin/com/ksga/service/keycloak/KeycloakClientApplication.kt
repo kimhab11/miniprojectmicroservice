@@ -1,4 +1,4 @@
-package com.ksga.service.service.user.service.user
+package com.ksga.service.keycloak
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

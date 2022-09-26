@@ -1,4 +1,3 @@
-
 server:
   port: 8084
 spring:
@@ -6,7 +5,6 @@ spring:
     name: gateway-service
   config:
     import: "optional:configserver:http://localhost:8008"
-
 
 
   cloud:
@@ -30,8 +28,6 @@ spring:
           filters:
             - RewritePath=/tasks/(?<path>.*), /$\{path}
 
-
-
         # (2)
         - id: openapi
           uri: http://localhost:${server.port}
@@ -51,26 +47,14 @@ springdoc:
 
 
 
+
 eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
 
 
-
-
-
-#eureka:
-#  client:
-#    fetch-registry: true
-#    register-with-eureka: true
-#    serviceUrl:
-#      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
-#  instance:
-#    preferIpAddress: true
-#
-#logging:
-#  pattern:
-#    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"

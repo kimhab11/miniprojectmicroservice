@@ -14,3 +14,7 @@ springdoc:
   packagesToScan: com.ksga.service.task
 
 
+  main:
+    allow-bean-definition-overriding: true
+
+

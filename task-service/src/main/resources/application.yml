@@ -7,7 +7,6 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-
   #r2dbc (database webflux)
   r2dbc:
     url: r2dbc:pool:postgresql://localhost:2347/task_db
@@ -17,11 +16,5 @@ server:
   port: 8081
 
 
-
-#  security grant_type (client_credentials)
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          jwk-set-uri: http://localhost:8888/auth/realms/mini/protocol/openid-connect/certs
-#          issuer-uri: http://localhost:8800/auth/realms/mini
+  springdoc:
+    packagesToScan: com.ksga.service.task

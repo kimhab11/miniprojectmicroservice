@@ -36,7 +36,4 @@ subprojects {
         plugin("io.spring.dependency-management")
     }
 
-
-
-
 }
