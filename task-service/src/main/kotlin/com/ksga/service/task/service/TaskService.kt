@@ -12,7 +12,7 @@ interface TaskService {
 
     fun deleteById(id: UUID):  Mono<TaskDto>
 
-    fun findById(id: UUID):   Mono<TaskDto>
+    fun findById(id: String, assignedtoId: String):   Mono<TaskDto>
 
 
 }

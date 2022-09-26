@@ -19,4 +19,6 @@ interface TaskRepository : ReactiveCrudRepository<Task,UUID>{
     @Query("select * from tasks where id = $1")
     fun findByTaskId(id:UUID) : Mono<Task>
 
+    fun findByGroupIdAndAssignedTo(groupId:UUID,assignedTo :UUID):Mono<Task>
+
 }

@@ -52,15 +52,13 @@ class TaskHandler(val taskService: TaskService) {
 
     fun findTaskById(req : ServerRequest):Mono<ServerResponse> {
 
-        val groupId = req.queryParam("group").toString()
-        val groupUUID = UUID.fromString(groupId)
+        val groupId = req.queryParam("group").orElse("groupId").toString()
 
-        val assignedtoId = req.queryParam("assignedto").toString()
-        val assignedtoUUID = UUID.fromString(assignedtoId)
+        val assignedtoId = req.queryParam("assignedto").orElse("assignedtoId").toString()
 
         return ServerResponse.ok()
             .body(
-                taskService.findById(groupUUID),
+                taskService.findById(groupId,assignedtoId),
                 TaskDto::class.java
             )
     }
