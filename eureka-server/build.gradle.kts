@@ -27,6 +27,8 @@ dependencies {
 
 
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:3.1.4")
+    // https://mavenlibs.com/maven/dependency/org.springframework.cloud/spring-cloud-starter-config
+//    implementation("org.springframework.cloud:spring-cloud-starter-config:3.1.4")
     testImplementation ("org.springframework.boot:spring-boot-starter-test")
     testImplementation ("io.projectreactor:reactor-test")
 

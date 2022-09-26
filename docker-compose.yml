@@ -1,3 +1,4 @@
+#version: "3.8"
 version: "3.8"
 
 volumes:
@@ -28,6 +29,8 @@ x-keycloak-env: &keycloak-env
 
 
 services:
+
+
   keycloak-database:
     image: postgres:14.4-alpine
     restart: unless-stopped
@@ -111,3 +114,6 @@ services:
       POSTGRES_PASSWORD: task
     volumes:
       - task_data:/var/lib/postgresql/data
+
+
+

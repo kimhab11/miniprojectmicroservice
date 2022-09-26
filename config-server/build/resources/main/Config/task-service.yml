@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 8081
 
 eureka:
   client:
@@ -12,3 +12,5 @@ logging:
 
 springdoc:
   packagesToScan: com.ksga.service.task
+
+
