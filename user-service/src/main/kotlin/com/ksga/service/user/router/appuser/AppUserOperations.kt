@@ -37,6 +37,10 @@ import org.springframework.web.bind.annotation.RequestMethod
                         description = "successful operation",
                         content = [Content(array = ArraySchema(schema = Schema(implementation = AppUserDto::class)))]
                     ),
+                    ApiResponse(
+                        responseCode = "500",
+                        description = "internal server error",
+                    ),
                 ],
                 ),
         ),

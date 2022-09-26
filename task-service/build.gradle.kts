@@ -32,7 +32,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("org.postgresql:r2dbc-postgresql")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+//    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     implementation("org.springdoc:springdoc-openapi-webflux-core:1.6.11")
     implementation("org.springdoc:springdoc-openapi-webflux-ui:1.6.11")
@@ -45,8 +45,8 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-config:3.1.4")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:3.1.4")
 
-//    implementation("org.springframework.cloud:spring-cloud-starter-gateway:3.1.4")
-//    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap:3.1.4")
+
+//    implementation ("org.springframework.boot:spring-boot-starter-oauth2-client")
 
 
 
