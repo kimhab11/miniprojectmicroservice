@@ -135,4 +135,3 @@ services:
       - task_data:/var/lib/postgresql/data
 
 
-
