@@ -15,14 +15,14 @@ spring:
       # (1)
       routes:
         - id: user-service
-          uri: lb://user-service
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/users/**
           filters:
             - RewritePath=/users/(?<path>.*), /$\{path}
 
         - id: task-service
-          uri: lb://task-service
+          uri: lb://TASK-SERVICE
           predicates:
             - Path=/tasks/**
           filters:
