@@ -17,7 +17,7 @@ class AppUserServiceImp(val appUserRepository: AppUserRepository) : AppUserServi
     }
 
     override fun findById(id: UUID): Mono<AppUserDto> {
-        return  appUserRepository.findByAuthId(id).log()
+        return  appUserRepository.findByAuthId(id)
             .switchIfEmpty(Mono.error(NotFoundException("$id")))
             .map { it.toDto() }
 
