@@ -10,8 +10,5 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/madamenich/client-config
-      default-label: master
-
-
-
+          uri: https://github.com/kimhab11/config-server-file
+          default-label: master
