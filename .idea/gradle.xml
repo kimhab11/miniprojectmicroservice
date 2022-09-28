@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/api-gateway" />
             <option value="$PROJECT_DIR$/api-keyword" />
+            <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/config-server" />
             <option value="$PROJECT_DIR$/eureka-client" />
             <option value="$PROJECT_DIR$/eureka-server" />

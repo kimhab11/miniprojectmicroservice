@@ -1,15 +1,11 @@
 package com.ksga.service.user.handler
 
-import com.ksga.service.user.exception.UserNotFoundException
 import com.ksga.service.user.model.dto.AppUserDto
 import com.ksga.service.user.model.entity.AppUser
 import com.ksga.service.user.model.request.appuser.AppUserProfileRequest
 import com.ksga.service.user.model.request.appuser.AppUserRequest
 import com.ksga.service.user.service.appuser.AppUserService
-import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
-import org.springframework.web.bind.annotation.ExceptionHandler
-import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import reactor.core.publisher.Mono

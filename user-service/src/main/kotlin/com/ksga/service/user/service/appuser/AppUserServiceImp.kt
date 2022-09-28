@@ -1,10 +1,10 @@
 package com.ksga.service.user.service.appuser
 
-import com.ksga.service.user.exception.UserNotFoundException
 import com.ksga.service.user.model.dto.AppUserDto
 import com.ksga.service.user.model.entity.AppUser
 import com.ksga.service.user.model.request.appuser.AppUserProfileRequest
 import com.ksga.service.user.model.request.appuser.AppUserRequest
+import org.kshrd.cloud.UserNotFoundException
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 import java.util.*
