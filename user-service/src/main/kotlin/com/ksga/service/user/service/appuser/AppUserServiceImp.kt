@@ -4,7 +4,7 @@ import com.ksga.service.user.model.dto.AppUserDto
 import com.ksga.service.user.model.entity.AppUser
 import com.ksga.service.user.model.request.appuser.AppUserProfileRequest
 import com.ksga.service.user.model.request.appuser.AppUserRequest
-import org.kshrd.cloud.UserNotFoundException
+import org.kshrd.cloud.NotFoundException
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 import java.util.*
@@ -18,7 +18,7 @@ class AppUserServiceImp(val appUserRepository: AppUserRepository) : AppUserServi
 
     override fun findById(id: UUID): Mono<AppUserDto> {
         return  appUserRepository.findByAuthId(id).log()
-            .switchIfEmpty(Mono.error(UserNotFoundException("$id")))
+            .switchIfEmpty(Mono.error(NotFoundException("$id")))
             .map { it.toDto() }
 
     }
