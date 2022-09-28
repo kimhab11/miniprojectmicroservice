@@ -5,6 +5,7 @@ import com.ksga.service.user.model.entity.AppUser
 import com.ksga.service.user.model.request.appuser.AppUserProfileRequest
 import com.ksga.service.user.model.request.appuser.AppUserRequest
 import com.ksga.service.user.service.appuser.AppUserService
+import org.kshrd.cloud.UserNotFoundException
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
@@ -32,12 +33,6 @@ class AppUserHandler(val appUserService: AppUserService) {
 
         val id = req.pathVariable("id")
         val idUUID = UUID.fromString(id)
-
-//        return ServerResponse.ok()
-//                .body(
-//                    appUserService.findById(idUUID).switchIfEmpty(Mono.error(UserNotFoundException("$idUUID"))),
-//                    AppUserDto::class.java
-//                )
 
         return appUserService.findById(idUUID)
             .flatMap {
