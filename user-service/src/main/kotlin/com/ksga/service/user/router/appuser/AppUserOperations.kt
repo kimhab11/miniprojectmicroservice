@@ -68,7 +68,7 @@ import org.springframework.web.bind.annotation.RequestMethod
                     ApiResponse(
                         responseCode = "200",
                         description = "successful operation",
-                        content = [Content(array = ArraySchema(schema = Schema(implementation = AppUserDto::class)))]
+                        content = [Content(schema = Schema(implementation = AppUserDto::class))]
                     ),
                 ],
             )
