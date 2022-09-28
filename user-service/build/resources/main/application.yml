@@ -1,4 +1,8 @@
 spring:
+  r2dbc:
+    url: r2dbc:pool:postgresql://localhost:2346/user_db
+    password: user
+    username: user
   application:
     name: user-service
   config:
@@ -9,12 +13,6 @@ spring:
   main:
     allow-bean-definition-overriding: true
     web-application-type: reactive
-
-  #r2dbc (database webflux)
-  r2dbc:
-    url: r2dbc:pool:postgresql://localhost:2346/user_db
-    password: user
-    username: user
 server:
   port: 8082
 
