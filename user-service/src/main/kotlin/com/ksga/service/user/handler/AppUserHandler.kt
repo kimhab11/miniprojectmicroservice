@@ -36,11 +36,14 @@ class AppUserHandler(val appUserService: AppUserService) {
         val id = req.pathVariable("id")
         val idUUID = UUID.fromString(id)
 
-        return ServerResponse.ok()
-            .body(
-                appUserService.findById(idUUID),
-                AppUserDto::class.java
-            )
+        return appUserService.findById(idUUID)
+            .flatMap {
+                ServerResponse.ok().body(Mono.just(it), AppUserDto::class.java)
+            }
+            .onErrorResume{
+                ServerResponse.badRequest().bodyValue(mapOf("Message" to it.message))
+            }
+
     }
 
 

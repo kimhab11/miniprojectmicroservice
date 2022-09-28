@@ -25,6 +25,8 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-webflux-core:1.6.11")
     implementation("org.springdoc:springdoc-openapi-webflux-ui:1.6.11")
 
+    implementation("org.springframework.cloud:spring-cloud-sleuth-zipkin:3.1.4")
+
 }
 
 tasks.getByName<Test>("test") {
