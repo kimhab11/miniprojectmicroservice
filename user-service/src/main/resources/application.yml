@@ -7,8 +7,8 @@ spring:
     name: user-service
   config:
     import: optional:configserver:http://localhost:8008
-  profiles:
-    active: dev
+#  profiles:
+#    active: dev
 
   main:
     allow-bean-definition-overriding: true

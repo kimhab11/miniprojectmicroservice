@@ -1,9 +1,6 @@
 server:
   port: 8008
 spring:
-  profiles:
-    active: native
-
   application:
     name: config-server
   cloud:
