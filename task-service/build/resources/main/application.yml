@@ -7,7 +7,6 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-
   #r2dbc (database webflux)
   r2dbc:
     url: r2dbc:pool:postgresql://localhost:2347/task_db
@@ -15,3 +14,7 @@ spring:
     username: task
 server:
   port: 8081
+
+
+  springdoc:
+    packagesToScan: com.ksga.service.task

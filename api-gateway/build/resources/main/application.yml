@@ -15,14 +15,14 @@ spring:
       # (1)
       routes:
         - id: user-service
-          uri: lb://user-service
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/users/**
           filters:
             - RewritePath=/users/(?<path>.*), /$\{path}
 
         - id: task-service
-          uri: lb://task-service
+          uri: lb://TASK-SERVICE
           predicates:
             - Path=/tasks/**
           filters:
@@ -53,7 +53,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     serviceUrl:
-      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+      defaultZone: http://localhost:8761/eureka
   instance:
     preferIpAddress: true
 
