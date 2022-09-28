@@ -9,7 +9,8 @@ spring:
   main:
     allow-bean-definition-overriding: true
     web-application-type: reactive
-
+server:
+  port: 8082
 
 
 
