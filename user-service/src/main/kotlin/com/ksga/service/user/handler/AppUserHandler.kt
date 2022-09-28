@@ -1,10 +1,12 @@
 package com.ksga.service.user.handler
 
+import com.fasterxml.jackson.annotation.JsonAlias
 import com.ksga.service.user.model.dto.AppUserDto
 import com.ksga.service.user.model.entity.AppUser
 import com.ksga.service.user.model.request.appuser.AppUserProfileRequest
 import com.ksga.service.user.model.request.appuser.AppUserRequest
 import com.ksga.service.user.service.appuser.AppUserService
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
@@ -22,7 +24,8 @@ class AppUserHandler(val appUserService: AppUserService) {
             }
             .flatMap {
                 ServerResponse.ok().bodyValue(it)
-            }
+            }.switchIfEmpty(ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+
     }
 
 
@@ -69,11 +72,17 @@ class AppUserHandler(val appUserService: AppUserService) {
             .flatMap {
                 ServerResponse.ok().bodyValue(it)
             }
-
     }
 
 
 
 
-
 }
+
+
+
+
+data class ApiErrorRespone(
+    val message : String,
+    @JsonAlias("documentation_url") val docs:String
+)
