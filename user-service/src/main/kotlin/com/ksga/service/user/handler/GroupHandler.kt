@@ -42,11 +42,18 @@ class GroupHandler(val groupService: GroupService,val memberService: MemberServi
         val id = req.pathVariable("id")
         val idUUID = UUID.fromString(id)
 
-        return ServerResponse.ok()
-            .body(
-                groupService.findById(idUUID),
-                GroupDto::class.java
-            )
+//        return ServerResponse.ok()
+//            .body(
+//                groupService.findById(idUUID),
+//                GroupDto::class.java
+//            )
+        return groupService.findById(idUUID)
+            .flatMap {
+                ServerResponse.ok().body(Mono.just(it), GroupDto::class.java)
+            }
+            .onErrorResume{
+                ServerResponse.badRequest().bodyValue(mapOf("Message" to it.message))
+            }
     }
 
 
