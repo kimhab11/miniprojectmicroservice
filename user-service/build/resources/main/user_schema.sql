@@ -40,18 +40,6 @@ CREATE TABLE IF NOT EXISTS group_members
     foreign key (added_by) references app_users (id) on delete cascade,
     primary key (group_id, user_id)
 
-
---         group_id   uuid,
---         user_id    uuid,
---         added_by   uuid,
---         date_added timestamp not null default now(),
---
---         foreign key (group_id) references groups (id) on delete cascade,
---         foreign key (user_id) references app_users (id) on delete cascade,
---         foreign key (added_by) references app_users (id) on delete cascade,
---         primary key (group_id, user_id)
-
-
     );
 
 
@@ -59,3 +47,8 @@ CREATE TABLE IF NOT EXISTS group_members
 select distinct app_users.* from app_users
 inner join group_members  on group_members.user_id = app_users.id
 where group_members.user_id = 50
+
+
+select  app_users.* from app_users
+inner join group_members  on group_members.user_id = app_users.id
+where group_members.group_id = '7522944c-957a-4c1b-9afc-c7bf9500ae5a'

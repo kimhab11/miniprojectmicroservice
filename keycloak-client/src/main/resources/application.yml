@@ -1,2 +1,16 @@
-server:
-  port: 8086
+#server:
+#  port: 8086
+
+spring:
+  application:
+    name: keycloak-server
+  config:
+    import: "optional:configserver:http://localhost:8008"
+
+
+keycloak:
+  realm: keycloak
+  resource: admin-spring-boot
+  auth-server-url: http://localhost:8888/auth
+  credentials:
+    secret: OLjXYVAnIyHb7nEBU3Hptn7TkbKSyB9P

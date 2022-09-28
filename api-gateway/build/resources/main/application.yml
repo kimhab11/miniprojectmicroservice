@@ -1,14 +1,14 @@
-
 server:
   port: 8084
+
+#  spring config server
 spring:
   application:
     name: gateway-service
   config:
     import: "optional:configserver:http://localhost:8008"
 
-
-
+#spring cloud
   cloud:
     gateway:
       discovery:
@@ -16,22 +16,43 @@ spring:
           enabled: true
       # (1)
       routes:
-        - id: user-service
-          uri: lb://user-service
+#-------------------route custom -----------------------
+        - id: user-service-openapi
+          uri:  lb://USER-SERVICE    #euraka service name
           predicates:
             - Path=/users/**
           filters:
             - RewritePath=/users/(?<path>.*), /$\{path}
 
-        - id: task-service
-          uri: lb://task-service
+
+        - id: task-service-openapi
+          uri: lb://TASK-SERVICE
           predicates:
             - Path=/tasks/**
           filters:
             - RewritePath=/tasks/(?<path>.*), /$\{path}
+#-------------------route custom -----------------------
 
 
 
+#------------------ original route-------------
+        - id: user-service
+          uri:  lb://USER-SERVICE
+          predicates:
+            - Path=/api/v1/users/**,/api/v1/groups/**
+#          filters: #notice
+#            - RewritePath=/api/v1/users/(?<path>.*), /$\{path}
+
+        - id: task-service
+          uri: lb://TASK-SERVICE
+          predicates:
+            - Path=/api/v1/tasks/**
+#          filters:  #notice
+#            - RewritePath=/api/v1/tasks/(?<path>.*), /$\{path}
+#------------------ original route-------------
+
+
+#------------------allow swagger ---------------------
         # (2)
         - id: openapi
           uri: http://localhost:${server.port}
@@ -51,26 +72,3 @@ springdoc:
 
 
 
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
-
-
-
-
-#eureka:
-#  client:
-#    fetch-registry: true
-#    register-with-eureka: true
-#    serviceUrl:
-#      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
-#  instance:
-#    preferIpAddress: true
-#
-#logging:
-#  pattern:
-#    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"

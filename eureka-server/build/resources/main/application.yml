@@ -1,7 +1,6 @@
 spring:
   application:
     name: registry-server
-    # Simply telling Eureka server to NOT fetch or register to any server since it's not a client.
 eureka:
   client:
     register-with-eureka: false
@@ -10,8 +9,4 @@ server:
   port: 8761
 
 
-#spring:
-#  application:
-#    name: eureka-server
-#  config:
-#    import: "optional:configserver:http://localhost:8008"
+

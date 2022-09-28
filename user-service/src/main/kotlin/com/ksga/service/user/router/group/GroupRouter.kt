@@ -20,7 +20,7 @@ class GroupRouter(val groupHandler: GroupHandler) {
                 GET("/groups",groupHandler::findAll)
                 GET("/groups/{id}",groupHandler::findById)
                 POST("/groups/members",groupHandler::createMemberGroup)
-                GET("/groups/{id}/users",groupHandler::findMemberById)
+                GET("/groups/{id}/users",groupHandler::findMemberByGroupId)
             }
         }
     }
