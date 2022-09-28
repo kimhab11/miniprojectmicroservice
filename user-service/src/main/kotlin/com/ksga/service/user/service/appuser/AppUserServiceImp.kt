@@ -1,5 +1,6 @@
 package com.ksga.service.user.service.appuser
 
+import com.ksga.service.user.exception.UserNotFoundException
 import com.ksga.service.user.model.dto.AppUserDto
 import com.ksga.service.user.model.entity.AppUser
 import com.ksga.service.user.model.request.appuser.AppUserProfileRequest
@@ -16,7 +17,9 @@ class AppUserServiceImp(val appUserRepository: AppUserRepository) : AppUserServi
     }
 
     override fun findById(id: UUID): Mono<AppUserDto> {
-        return  appUserRepository.findByAuthId(id).map { it.toDto() }
+        return  appUserRepository.findByAuthId(id).log()
+            .switchIfEmpty(Mono.error(UserNotFoundException("$id")))
+            .map { it.toDto() }
 
     }
 

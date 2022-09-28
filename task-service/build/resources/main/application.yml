@@ -1,11 +1,12 @@
+#  communicate with config server
 spring:
   main:
     allow-bean-definition-overriding: true
     web-application-type: reactive
   application:
-    name: task-service
-  profiles:
-    active: dev
+    name: task-service #for eureka and spring profile git (task-service-dev.yml)
+  profiles:   #for specific spring profile to git
+    active: dev  #specific name yml of git
   config:
     import: optional:configserver:http://localhost:8008
 server:

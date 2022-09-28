@@ -1,11 +1,15 @@
 package com.ksga.service.user.handler
 
+import com.ksga.service.user.exception.UserNotFoundException
 import com.ksga.service.user.model.dto.AppUserDto
 import com.ksga.service.user.model.entity.AppUser
 import com.ksga.service.user.model.request.appuser.AppUserProfileRequest
 import com.ksga.service.user.model.request.appuser.AppUserRequest
 import com.ksga.service.user.service.appuser.AppUserService
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
+import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import reactor.core.publisher.Mono
@@ -33,11 +37,20 @@ class AppUserHandler(val appUserService: AppUserService) {
         val id = req.pathVariable("id")
         val idUUID = UUID.fromString(id)
 
-        return ServerResponse.ok()
-            .body(
-                appUserService.findById(idUUID),
-                AppUserDto::class.java
-            )
+//        return ServerResponse.ok()
+//                .body(
+//                    appUserService.findById(idUUID).switchIfEmpty(Mono.error(UserNotFoundException("$idUUID"))),
+//                    AppUserDto::class.java
+//                )
+
+        return appUserService.findById(idUUID)
+            .flatMap {
+                ServerResponse.ok().body(Mono.just(it), AppUserDto::class.java)
+            }
+            .onErrorResume{
+                ServerResponse.badRequest().bodyValue(mapOf("Message" to it.message))
+            }
+
     }
 
 
