@@ -16,7 +16,7 @@ data class TaskRequest(
         title = title,
         description = description,
         createdBy = UUID.randomUUID(), //
-        assignedTo =assignedTo, //
+        assignedTo =assignedTo,
         groupId = groupId, //
         status = 3,
         createdDate = LocalDateTime.now(),
