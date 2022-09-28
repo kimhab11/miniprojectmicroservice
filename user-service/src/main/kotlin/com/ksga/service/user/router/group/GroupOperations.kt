@@ -24,6 +24,7 @@ import org.springdoc.core.annotations.RouterOperation
 import org.springdoc.core.annotations.RouterOperations
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.RequestMethod
+import reactor.core.publisher.Flux
 
 
 @RouterOperations(
@@ -130,9 +131,9 @@ import org.springframework.web.bind.annotation.RequestMethod
             method = [RequestMethod.GET],
             produces = [MediaType.APPLICATION_JSON_VALUE],
             beanClass = GroupHandler::class,
-            beanMethod = "findMemberById",
+            beanMethod = "findMemberByGroupId",
             operation = Operation(
-                operationId = "findMemberById",
+                operationId = "findMemberByGroupId",
                 parameters = [
                     Parameter(
                         name = "id",

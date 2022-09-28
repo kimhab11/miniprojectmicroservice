@@ -12,7 +12,7 @@ data class TaskDto(
     var createdBy : AppUser ? = null,
     var assignedTo : AppUser ? = null,
     val groupId : UUID,
-    val status : String? =null,
+        val status : String? =null,
     val createdDate : LocalDateTime,
     val lastModified : LocalDateTime
 

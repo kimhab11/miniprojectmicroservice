@@ -13,7 +13,7 @@ class Client {
     fun userClient(): WebClient =
         WebClient
             .builder() //prepare an instance
-            .baseUrl("http://192.168.1.106:8082")
+            .baseUrl("http://192.168.178.109:8082/")
             .build()
 
 
