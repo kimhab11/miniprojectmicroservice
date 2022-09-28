@@ -63,7 +63,7 @@ class GroupHandler(val groupService: GroupService,val memberService: MemberServi
 
 
 
-    fun findMemberById(req : ServerRequest) : Mono<ServerResponse>{
+    fun findMemberByGroupId(req : ServerRequest) : Mono<ServerResponse>{
         val id = req.pathVariable("id")
         val idUUID = UUID.fromString(id)
 

@@ -47,3 +47,8 @@ CREATE TABLE IF NOT EXISTS group_members
 select distinct app_users.* from app_users
 inner join group_members  on group_members.user_id = app_users.id
 where group_members.user_id = 50
+
+
+select  app_users.* from app_users
+inner join group_members  on group_members.user_id = app_users.id
+where group_members.group_id = '7522944c-957a-4c1b-9afc-c7bf9500ae5a'

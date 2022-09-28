@@ -1,5 +1,7 @@
 server:
   port: 8008
+
+# config config-server to git
 spring:
   application:
     name: config-server
@@ -7,5 +9,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/kimhab11/config-server-file
-          default-label: master
+          skip-ssl-validation : true
+          uri: https://gitlab.com/RITH10th/config-server #config-server (name repository git)
+          default-label: master   #default of git
+
