@@ -3,6 +3,7 @@ package com.ksga.service.user.service.group
 import com.ksga.service.user.model.dto.GroupDto
 import com.ksga.service.user.model.entity.Group
 import com.ksga.service.user.model.request.group.GroupRequest
+import org.kshrd.cloud.NotFoundException
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -24,6 +25,7 @@ class GroupServiceImp(val groupRepository: GroupRepository) : GroupService {
 
     override fun findById(id: UUID): Mono<GroupDto> {
         return groupRepository.findByGroupId(id)
+            .switchIfEmpty(Mono.error(NotFoundException("$id")))
             .map { it.toDto() }
     }
 

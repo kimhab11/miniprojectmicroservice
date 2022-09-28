@@ -34,6 +34,8 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-config:3.1.4")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:3.1.4")
 
+    implementation("org.springframework.cloud:spring-cloud-sleuth-zipkin:3.1.4")
+
 }
 
 
