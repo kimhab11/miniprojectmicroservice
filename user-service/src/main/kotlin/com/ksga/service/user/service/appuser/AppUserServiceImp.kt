@@ -13,7 +13,21 @@ import java.util.*
 class AppUserServiceImp(val appUserRepository: AppUserRepository) : AppUserService{
 
     override fun create(appUserRequest: AppUserRequest): Mono<AppUserDto> {
-        return appUserRepository.save(appUserRequest.toEntity()).map { it.toDto() }
+
+        val emailExists = appUserRepository.emailExists(appUserRequest.email)
+        val nameExist = appUserRepository.nameExists(appUserRequest.username)
+
+        val emailAndNameExists = emailExists.zipWith(nameExist).map {
+            it.t1 || it.t2
+        }
+
+        val response = emailAndNameExists.flatMap { exists ->
+            if (exists) Mono.error(RuntimeException("Username: ${appUserRequest.username} and email: ${appUserRequest.email}"))
+            else appUserRepository.save(appUserRequest.toEntity())
+                .map { it.toDto() }
+        }
+
+        return response
     }
 
     override fun findById(id: UUID): Mono<AppUserDto> {
