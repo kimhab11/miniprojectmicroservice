@@ -13,6 +13,8 @@ interface AppUserService {
 
     fun findById(id: UUID): Mono<AppUserDto>
 
+    fun deleteByFindId(id: UUID): Mono<AppUserDto>
+
     fun deleteById(idUUID: UUID): Mono<AppUser>
 
     fun updateById(appUserProfileRequest: AppUserProfileRequest, id: UUID) : Mono<AppUserDto>
