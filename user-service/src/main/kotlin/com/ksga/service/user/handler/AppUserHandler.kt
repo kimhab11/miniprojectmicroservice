@@ -83,9 +83,3 @@ class AppUserHandler(val appUserService: AppUserService) {
 }
 
 
-
-
-data class ApiErrorRespone(
-    val message : String,
-    @JsonAlias("documentation_url") val docs:String
-)

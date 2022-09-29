@@ -31,11 +31,12 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-webflux-ui:1.6.11")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation("org.springframework.boot:spring-boot-starter-test:2.7.4")
-    implementation("org.springframework.cloud:spring-cloud-starter-sleuth:3.1.4")
     implementation("org.springframework.cloud:spring-cloud-starter-config:3.1.4")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:3.1.4")
     implementation("org.springframework.cloud:spring-cloud-sleuth-zipkin:3.1.4")
     implementation(project(":common"))
+    implementation("org.springframework.cloud:spring-cloud-starter-sleuth:3.1.4")
+    implementation("org.springframework.cloud:spring-cloud-sleuth-zipkin:3.1.4")
 }
 
 tasks.getByName<Test>("test") {

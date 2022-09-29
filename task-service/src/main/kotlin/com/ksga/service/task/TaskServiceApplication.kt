@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.security.OAuthFlow
 import io.swagger.v3.oas.annotations.security.OAuthFlows
 import io.swagger.v3.oas.annotations.security.SecurityScheme
 import io.swagger.v3.oas.annotations.servers.Server
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient
@@ -40,6 +41,7 @@ import org.springframework.web.reactive.config.EnableWebFlux
 )
 @SpringBootApplication
 @EnableDiscoveryClient
+//@EnableAutoConfiguration
 class TaskServiceApplication {
 
 
