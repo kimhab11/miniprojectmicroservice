@@ -22,7 +22,7 @@ class AppUserServiceImp(val appUserRepository: AppUserRepository) : AppUserServi
         }
 
         val response = emailAndNameExists.flatMap { exists ->
-            if (exists) Mono.error(RuntimeException("Username: ${appUserRequest.username} and email: ${appUserRequest.email}"))
+            if (exists) Mono.error(RuntimeException("Username: ${appUserRequest.username} and email: ${appUserRequest.email} already exist"))
             else appUserRepository.save(appUserRequest.toEntity())
                 .map { it.toDto() }
         }
