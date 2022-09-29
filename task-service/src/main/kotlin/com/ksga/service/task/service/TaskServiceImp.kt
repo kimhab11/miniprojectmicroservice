@@ -3,6 +3,7 @@ package com.ksga.service.task.service
 import com.ksga.service.task.handler.AppUser
 import com.ksga.service.task.model.dto.TaskDto
 import com.ksga.service.task.model.request.TaskRequest
+import com.ksga.service.user.service.member.MemberRepository
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
@@ -12,13 +13,15 @@ import java.util.*
 @Service
 class TaskServiceImp(
     val taskRepository: TaskRepository,
-    @Qualifier("AppUserClient") val appUserClient: WebClient
+    @Qualifier("AppUserClient") val appUserClient: WebClient,
 ) : TaskService {
+
 
 
     override fun create(taskRequest: TaskRequest): Mono<TaskDto> {
 
         val assignedToUser = taskRequest.assignedTo
+
 
         val taskMono =  taskRepository.save(taskRequest.toEntity())
             .map { it.toDto()}
