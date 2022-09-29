@@ -5,6 +5,7 @@ import com.ksga.service.task.model.dto.TaskDto
 import com.ksga.service.task.model.request.TaskRequest
 import com.ksga.service.user.service.member.MemberRepository
 import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
@@ -16,12 +17,9 @@ class TaskServiceImp(
     @Qualifier("AppUserClient") val appUserClient: WebClient,
 ) : TaskService {
 
-
-
-    override fun create(taskRequest: TaskRequest): Mono<TaskDto> {
+        override fun create(taskRequest: TaskRequest): Mono<TaskDto> {
 
         val assignedToUser = taskRequest.assignedTo
-
 
         val taskMono =  taskRepository.save(taskRequest.toEntity())
             .map { it.toDto()}
