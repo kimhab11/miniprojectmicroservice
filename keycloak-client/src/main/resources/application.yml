@@ -1,10 +1,10 @@
 #server:
 #  port: 8086
 
-spring:
-  application:
-    name: keycloak-server
-  config:
-    import: "optional:configserver:http://localhost:8008"
+#spring:
+#  application:
+#    name: keycloak-server
+#  config:
+#    import: "optional:configserver:http://localhost:8008"
 
 
