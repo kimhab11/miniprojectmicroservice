@@ -27,7 +27,9 @@ class AppUserHandler(val appUserService: AppUserService) {
             }
             .flatMap {
                 ServerResponse.ok().bodyValue(it)
-            }.switchIfEmpty(ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+            }
+           .onErrorResume{ ServerResponse.badRequest().bodyValue(mapOf("Message" to it.message))
+           }.switchIfEmpty(ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
 
     }
 
