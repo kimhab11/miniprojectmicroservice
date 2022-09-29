@@ -11,6 +11,11 @@ import java.util.UUID
 @Repository
 interface AppUserRepository : ReactiveCrudRepository<AppUser,Int>{
 
+    @Query("select exists (select 1 from app_users where username = :name )")
+    fun nameExists(name:String): Mono<Boolean>
+    @Query("select exists (select 1 from app_users where email = :email)")
+    fun emailExists(email:String): Mono<Boolean>
+
 
     fun findByAuthId(id : UUID) : Mono<AppUser>
 
