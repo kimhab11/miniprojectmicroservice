@@ -38,13 +38,6 @@ import reactor.core.publisher.Flux
             operation = Operation(
                 operationId = "createGroup",
                 requestBody = RequestBody(content = [Content(schema = Schema(implementation = GroupRequest::class))]),
-                responses = [
-                    ApiResponse(
-                        responseCode = "200",
-                        description = "successful operation",
-                        content = [Content(array = ArraySchema(schema = Schema(implementation = GroupDto::class)))]
-                    ),
-                ],
             ),
         ),
 
@@ -59,13 +52,6 @@ import reactor.core.publisher.Flux
             beanMethod = "findAll",
             operation = Operation(
                 operationId = "findAll",
-                responses = [
-                    ApiResponse(
-                        responseCode = "200",
-                        description = "successful operation",
-                        content = [Content(array = ArraySchema(schema = Schema(implementation = GroupDto::class)))]
-                    ),
-                ],
             ),
         ),
 
@@ -89,13 +75,6 @@ import reactor.core.publisher.Flux
                         required = true,
                     ),
                 ],
-                responses = [
-                    ApiResponse(
-                        responseCode = "200",
-                        description = "successful operation",
-                        content = [Content(array = ArraySchema(schema = Schema(implementation = GroupDto::class)))]
-                    ),
-                ],
             ),
         ),
 
@@ -110,13 +89,6 @@ import reactor.core.publisher.Flux
             operation = Operation(
                 operationId = "createMemberGroup",
                 requestBody = RequestBody(content = [Content(schema = Schema(implementation = MemberRequest::class))]),
-                responses = [
-                    ApiResponse(
-                        responseCode = "200",
-                        description = "successful operation",
-                        content = [Content(array = ArraySchema(schema = Schema(implementation = MemberDto::class)))]
-                    ),
-                ],
             ),
         ),
 
@@ -141,13 +113,6 @@ import reactor.core.publisher.Flux
                         style = ParameterStyle.SIMPLE,
                         explode = Explode.FALSE,
                         required = true,
-                    ),
-                ],
-                responses = [
-                    ApiResponse(
-                        responseCode = "200",
-                        description = "successful operation",
-                        content = [Content(array = ArraySchema(schema = Schema(implementation = AppUserDto::class)))]
                     ),
                 ],
             ),

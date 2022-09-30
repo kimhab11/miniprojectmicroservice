@@ -14,13 +14,25 @@ class MemberServiceImp(val memberRepository: MemberRepository,val appUserReposit
 
 
     override fun create(memberRequest: MemberRequest): Mono<MemberDto> {
+
+        val checkGroupId = memberRepository.findByGroupId(memberRequest.groupId)
+
         val userId = memberRequest.userId
         val userIdSearching = appUserRepository.findIdByAuthId(userId)
-        val memberDto = userIdSearching.flatMap {
-            memberRepository.save(memberRequest.toEntity(it))
-        }.map { it.toDto() }
 
-        return memberDto
+        val response = checkGroupId.flatMap {
+            if(it){
+                userIdSearching.flatMap {
+                    memberRepository.save(memberRequest.toEntity(it))
+                }.map { it.toDto() }
+            }else{
+                Mono.error(RuntimeException("group not found"))
+            }
+        }
+
+
+
+        return response
     }
 
 
