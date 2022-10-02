@@ -31,17 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod
             operation = Operation(
                 operationId = "createUser",
                 requestBody = RequestBody(content = [Content(schema = Schema(implementation = AppUserRequest::class))]),
-                responses = [
-                    ApiResponse(
-                        responseCode = "200",
-                        description = "successful operation",
-                        content = [Content(array = ArraySchema(schema = Schema(implementation = AppUserDto::class)))]
-                    ),
-                    ApiResponse(
-                        responseCode = "500",
-                        description = "internal server error",
-                    ),
-                ],
+
                 ),
         ),
 
@@ -64,13 +54,7 @@ import org.springframework.web.bind.annotation.RequestMethod
                         required = true,
                     ),
                 ],
-                responses = [
-                    ApiResponse(
-                        responseCode = "200",
-                        description = "successful operation",
-                        content = [Content(schema = Schema(implementation = AppUserDto::class))]
-                    ),
-                ],
+
             )
         ),
 
@@ -119,13 +103,6 @@ import org.springframework.web.bind.annotation.RequestMethod
                     ),
                 ],
                 requestBody = RequestBody(content = [Content(schema = Schema(implementation = AppUserProfileRequest::class))]),
-                responses = [
-                    ApiResponse(
-                        responseCode = "200",
-                        description = "successful operation",
-                        content = [Content(array = ArraySchema(schema = Schema(implementation = AppUserDto::class)))]
-                    ),
-                ],
                 )
         ),
 

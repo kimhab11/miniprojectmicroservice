@@ -1,7 +1,5 @@
 package com.ksga.service.user.service.member
 
-import com.ksga.service.user.model.dto.AppUserDto
-import com.ksga.service.user.model.dto.MemberDto
 import com.ksga.service.user.model.entity.AppUser
 import com.ksga.service.user.model.entity.Member
 import org.springframework.data.r2dbc.repository.Query
@@ -24,6 +22,8 @@ import java.util.*
                 " where group_members.group_id = :groupId "
     )
     fun findByUserGroupId(groupId: UUID): Flux<AppUser>
+    @Query("select exists (select 1 from group_members where group_id = :groupId)")
+    fun findByGroupId(groupId: UUID): Mono<Boolean>
 
 
 }

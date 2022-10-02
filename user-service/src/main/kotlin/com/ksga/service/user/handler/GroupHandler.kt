@@ -10,9 +10,11 @@ import com.ksga.service.user.model.request.group.GroupRequest
 import com.ksga.service.user.model.request.member.MemberRequest
 import com.ksga.service.user.service.group.GroupService
 import com.ksga.service.user.service.member.MemberService
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import java.util.*
 
@@ -26,7 +28,7 @@ class GroupHandler(val groupService: GroupService,val memberService: MemberServi
             }
             .flatMap {
                 println(it)
-                ServerResponse.ok().bodyValue(it)
+                ServerResponse.status(HttpStatus.CREATED).bodyValue(it)
             }
     }
 
@@ -41,18 +43,12 @@ class GroupHandler(val groupService: GroupService,val memberService: MemberServi
     fun findById(req : ServerRequest) : Mono<ServerResponse>{
         val id = req.pathVariable("id")
         val idUUID = UUID.fromString(id)
-
-//        return ServerResponse.ok()
-//            .body(
-//                groupService.findById(idUUID),
-//                GroupDto::class.java
-//            )
         return groupService.findById(idUUID)
             .flatMap {
                 ServerResponse.ok().body(Mono.just(it), GroupDto::class.java)
             }
             .onErrorResume{
-                ServerResponse.badRequest().bodyValue(mapOf("Message" to it.message))
+                ServerResponse.badRequest().bodyValue(mapOf("message" to it.message))
             }
     }
 
@@ -60,17 +56,19 @@ class GroupHandler(val groupService: GroupService,val memberService: MemberServi
     fun createMemberGroup(req : ServerRequest) : Mono<ServerResponse> {
         return req.bodyToMono(MemberRequest::class.java)
             .flatMap {
-                memberService.create(it)
+                memberService.create(it).map { it.groupId }
             }
             .flatMap {
                 println(it)
-                ServerResponse.ok().bodyValue(it)
+                ServerResponse.ok().bodyValue(mapOf("group" to it))
+            }.onErrorResume{
+                ServerResponse.badRequest().bodyValue(mapOf("message" to "member already exists in group"))
             }
     }
 
 
 
-    fun findMemberByGroupId(req : ServerRequest) : Mono<ServerResponse>{
+    fun findMemberByGroupId(req : ServerRequest) : Mono<ServerResponse> {
         val id = req.pathVariable("id")
         val idUUID = UUID.fromString(id)
 
@@ -79,7 +77,14 @@ class GroupHandler(val groupService: GroupService,val memberService: MemberServi
                 memberService.findById(idUUID),
                 AppUserDto::class.java
             )
+            .onErrorResume{
+                ServerResponse.badRequest().bodyValue(mapOf("message" to "group not found"))
+            }
+
+
+
     }
+
 
 
 

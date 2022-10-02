@@ -1,4 +1,4 @@
 package org.kshrd.cloud
 
-class UserDeleteException(userId: String): RuntimeException("Cannot delete id: $userId , not found"){
+class UserDeleteException(userId: String): RuntimeException("user with specified id does not exist"){
 }
